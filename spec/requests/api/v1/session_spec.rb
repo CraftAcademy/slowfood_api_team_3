@@ -1,4 +1,4 @@
-RSpec.describe 'POST /api/vi/auth/sign_in', type: :request do
+RSpec.describe 'POST /api/auth/sign_in', type: :request do
     let(:headers) { { HTTP_ACCEPT: 'application/json' } }
     let(:user) { create(:user) }
     let(:expected_response) do
@@ -11,7 +11,7 @@ RSpec.describe 'POST /api/vi/auth/sign_in', type: :request do
     end
     describe 'with valid credentials' do
         before do
-            post '/api/v1/auth/sign_in',
+            post '/api/auth/sign_in',
             params: {
                 email: user.email,
                 password: user.password
@@ -30,7 +30,7 @@ RSpec.describe 'POST /api/vi/auth/sign_in', type: :request do
   
     describe 'with invalid password' do
         before do 
-            post '/api/v1/auth/sign_in',
+            post '/api/auth/sign_in',
             params: {
                 email: user.email,
                 password: 'wrong_password'
@@ -49,7 +49,7 @@ RSpec.describe 'POST /api/vi/auth/sign_in', type: :request do
   
     describe 'with invalid email' do
       before do
-        post '/api/v1/auth/sign_in',
+        post '/api/auth/sign_in',
         params: {
           email: 'wrong@email.com',
           password: user.password
