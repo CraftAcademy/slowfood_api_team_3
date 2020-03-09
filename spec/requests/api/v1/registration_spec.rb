@@ -1,8 +1,8 @@
-RSpec.describe "POST /api/v1/auth", type: :request do
+RSpec.describe "POST /api/auth", type: :request do
     let(:headers) { { HTTP_ACCEPT: 'application/json' } }
     describe 'with valid credentials' do
       before do
-        post '/api/v1/auth',
+        post '/api/auth',
             params: {
               email: 'example@craftacademy.se',
               password: 'password',
@@ -20,7 +20,7 @@ RSpec.describe "POST /api/v1/auth", type: :request do
     context 'when a user submits' do
       describe 'a non-matching password confirmation' do
         before do
-          post '/api/v1/auth',
+          post '/api/auth',
               params: {
                 email: 'example@craftacademy.se',
                 password: 'password',
@@ -37,7 +37,7 @@ RSpec.describe "POST /api/v1/auth", type: :request do
       end
       describe 'an invalid email address' do
         before do
-          post '/api/v1/auth',
+          post '/api/auth',
               params: {
                 email: 'example@craft',
                 password: 'password',
@@ -55,7 +55,7 @@ RSpec.describe "POST /api/v1/auth", type: :request do
       describe 'an already registered email' do
         let!(:registered_user) { create(:user, email: 'coach@craftacademy.se') }
         before do
-          post '/api/v1/auth',
+          post '/api/auth',
               params: {
                 email: 'coach@craftacademy.se',
                 password: 'password',
